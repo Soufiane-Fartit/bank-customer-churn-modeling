@@ -130,8 +130,4 @@ in the file « main,py » the code :
 -	train the K-neighborgs classifer
 -	make predictions on the test set
 
-we get 82 % accuracy,
-
-
-
-The final answer is YES, we can predict if a costumer is leaving or not,
+we get 82 % accuracy.
