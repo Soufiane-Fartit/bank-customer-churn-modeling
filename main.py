@@ -43,8 +43,6 @@ X_train, X_test, Y_train, Y_test = preprocess(df)
 
 
 # TRAIN THE CLASSIFIER
-
-#clf = LinearSVC(random_state=0, tol=1e-5)
 clf = KNeighborsClassifier(n_neighbors = 2)
 clf.fit(X_train, Y_train)
 
