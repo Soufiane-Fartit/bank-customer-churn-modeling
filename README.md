@@ -12,9 +12,7 @@ Using the code in « analyse,py » we can see the difference in the histograms
 
 Age :
 
-![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Age_stayed.png)
-
-![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Age_left.png)
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Age_stayed.png) | ![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Age_left.png)
 
 
 
