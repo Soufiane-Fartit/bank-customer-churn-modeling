@@ -14,7 +14,7 @@ Age :
 
 ![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Age_stayed.png)
 
-
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Age_left.png)
 
 
 
@@ -30,7 +30,9 @@ Gender : (0 : female, 1 : male)
 
 
 
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Gender_stayed.png)
 
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Gender_left.png)
 
 
 
@@ -50,6 +52,9 @@ Gender : (0 : female, 1 : male)
 
 Geography : (0 : France, 1 : Spain, 2 : Germany)
 
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Geography_stayed.png)
+
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/Geography_left.png)
 
 
 
@@ -67,6 +72,9 @@ NumOfProducts :
 
 
 
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/NumOfProducts_stayed.png)
+
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/NumOfProducts_left.png)
 
 
 
@@ -83,6 +91,9 @@ IsActiveMember :
 
 
 
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/IsActiveMember_stayed.png)
+
+![alt text](https://github.com/Soufiane-Fartit/bank-customer-churn-modeling/blob/master/analysis/IsActiveMember_left.png)
 
 
 
