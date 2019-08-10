@@ -8,11 +8,6 @@ from sklearn.svm import LinearSVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
-PATH = "Churn_Modelling.csv"
-
-df = pd.read_csv(PATH)
-df.head()
-
 
 def preprocess(df):
     labels = df[['Exited']]
@@ -37,6 +32,12 @@ def preprocess(df):
     Y_test = labels[~msk]
 
     return X_train, X_test, Y_train, Y_test
+
+
+PATH = "Churn_Modelling.csv"
+
+df = pd.read_csv(PATH)
+df.head()
 
 # LOAD TRAIN AND TEST DATA
 X_train, X_test, Y_train, Y_test = preprocess(df)
