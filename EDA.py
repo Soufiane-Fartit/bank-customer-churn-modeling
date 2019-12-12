@@ -86,6 +86,8 @@ sns.scatterplot(x="principal component 1",
                 hue="Exited",
                 data=finalDf)
 
+"""
+# TSNE TAKES TOO MUCH TIME
 from sklearn.manifold import TSNE
 X_embedded = TSNE(n_components=2).fit_transform(X_res)
 X_embeddedDf = pd.DataFrame(data = X_embedded,
@@ -97,6 +99,7 @@ sns.scatterplot(x="XX1",
                 y="XX2",
                 hue="Exited",
                 data=finalX_embeddedDf)
+"""
 
 msk = np.random.rand(len(X_res)) < 0.8
 X_train = X_res[msk]
@@ -111,7 +114,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import AdaBoostClassifier
 import xgboost as xgb
 
-svc = SVC()
+svc = SVC(probability=True)
 knn = KNeighborsClassifier()
 rfc = RandomForestClassifier()
 ada = AdaBoostClassifier()
@@ -147,14 +150,15 @@ print('xgb accuracy',accuracy_score(xgb_predictions, Y_test))
 
 # XGBOOST OUTPERFORMS ALL OTHER MODELS WITH 90% ACCURACY
 
+# CORRELATION BETWEEN BAD PREDICTIONS OF CLASSIFIERS
 svc_wrong = 1*abs(svc_predictions-Y_test['Exited'].to_numpy())
-knn_wrong = 2*abs(knn_predictions-Y_test['Exited'].to_numpy())
-rfc_wrong = 3*abs(rfc_predictions-Y_test['Exited'].to_numpy())
-ada_wrong = 4*abs(ada_predictions-Y_test['Exited'].to_numpy())
-xgb_wrong = 5*abs(xgb_predictions-Y_test['Exited'].to_numpy())
+knn_wrong = 1*abs(knn_predictions-Y_test['Exited'].to_numpy())
+rfc_wrong = 1*abs(rfc_predictions-Y_test['Exited'].to_numpy())
+ada_wrong = 1*abs(ada_predictions-Y_test['Exited'].to_numpy())
+xgb_wrong = 1*abs(xgb_predictions-Y_test['Exited'].to_numpy())
 
 Id_wrong = svc_wrong+knn_wrong+rfc_wrong+ada_wrong+xgb_wrong
-Id_wrong
+
 Id_wrong = pd.DataFrame(Id_wrong,
                     columns=['bad'])
 
@@ -171,3 +175,31 @@ sns.scatterplot(x="principal component 1",
                 y="principal component 2",
                 hue="bad",
                 data=finalDfwrong)
+
+# POINTS WITH A VALUE OF 2 OR LESS CAN BE ELIMINATED USING A VOTING CLASSIFIER
+# GIVEN THE NUMBER OF POINTS WITH A VALUE OF 2 OR LESS, A VOTING CLASSIFIER
+# SEEMS TO BE A GOOD lDEA
+
+from sklearn.ensemble import VotingClassifier
+estimators=[('svc', svc), ('knn', knn), ('rfc', rfc), ('ada', ada), ('xgb', xgb)]
+eclf1 = VotingClassifier(estimators=estimators,
+                        voting='hard')
+eclf1.fit(X_train,
+        Y_train)
+
+eclf1_predictions = eclf1.predict(X_test)
+print('ensemble accuracy',accuracy_score(eclf1_predictions, Y_test))
+
+# THE RESULTS OF THE VOTING CLASSIFIER (89%) ARE NOT BETTER THAN THE XGBOOST ALONE
+# WE WILL TRY TO GET BETTER RESULTS USING A STACKING CLASSIFIER
+
+from sklearn.ensemble import StackingClassifier
+from sklearn.linear_model import LogisticRegression
+stack = StackingClassifier(estimators=estimators,
+                        final_estimator=LogisticRegression())
+stack.fit(X_train,
+        Y_train)
+stack_predictions = stack.predict(X_test)
+print('stacking accuracy',accuracy_score(stack_predictions, Y_test))
+
+# USING THE STACKING CLASSIFIER WE MANAGE TO GET 92.3% ACCURACY ON THE TESTING SET
