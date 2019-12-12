@@ -120,14 +120,5 @@ after visualising other features they appear to be non- relevant so they wont be
 
 Building the classifier and making predictions :
 
-this is a classification problem with less than 100K sample in dataset, the trivial algorithm to chose for this kind of problems is the K-neerest neighbors,
-
-in the file « main,py » the code :
--	load data,
--	drop irrelevant features
--	change text features to numbers,
--	split it to train and test
--	train the K-neighborgs classifer
--	make predictions on the test set
-
-we get 82 % accuracy.
+We use a stacking logistic regression on top of four models which are: svm, knn, random forests, xgboost.
+We get a final accuracy of 92%
